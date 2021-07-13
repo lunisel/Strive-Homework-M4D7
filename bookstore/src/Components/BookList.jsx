@@ -9,18 +9,28 @@ const BookList = (prop) => {
 
   return (
     <Container fluid>
-      <h1>Latest Releases</h1>
       <Row>
         <Col xs={12} md={8}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Search</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Search here"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </Form.Group>
+          <Row className="d-flex align-items-baseline py-2">
+            <Col md={5}>
+              <h1>Latest Releases</h1>
+            </Col>
+            <Col md={7}>
+              <Form.Group
+                className="d-flex align-items-baseline"
+                controlId="formBasicEmail"
+              >
+                <Form.Label id="search">Search</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Search here"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
           <Row>
             {prop.books
               .filter((book) => book.title.toLowerCase().includes(searchQuery))

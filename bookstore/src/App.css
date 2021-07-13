@@ -7,6 +7,18 @@ img {
   width: 100%;
 }
 
+label#search {
+  padding-right: 1rem;
+}
+
+div.rate {
+  text-align: left;
+}
+
+div.comments {
+  text-align: left;
+}
+
 div.card-title {
   display: -webkit-box;
   -webkit-line-clamp: 2;

@@ -27,8 +27,8 @@ const AddComment = (prop) => {
         // the comment has been sent succesfully!!
         alert("Comment was sent!");
         setCommentForm({
-          comment: null,
-          rate: null,
+          comment: "",
+          rate: 1,
           elementId: prop.asin,
         });
         prop.fetchBook();

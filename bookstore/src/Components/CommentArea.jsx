@@ -66,7 +66,7 @@ const CommentArea = (prop) => {
     <div>
       {state.isLoading && <Loading />}
       {state.isError && <Error />}
-      <img src={prop.b.img} style={{ width: "10rem" }} />
+      <img src={prop.b.img} style={{ width: "10rem" }} alt="book-cover" />
       <AddComment asin={prop.b.asin} fetchBook={fetchBook} />
       <CommentList commentsToShow={state.comments} fetchBook={fetchBook} />
     </div>

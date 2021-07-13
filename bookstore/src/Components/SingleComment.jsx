@@ -1,4 +1,4 @@
-import { Button, ListGroup } from "react-bootstrap";
+import { Button, ListGroup, Row, Col } from "react-bootstrap";
 
 const deleteComment = async (asin, fetchBook) => {
   try {
@@ -23,16 +23,32 @@ const deleteComment = async (asin, fetchBook) => {
   }
 };
 
+const rateAsStars = (rate) => {
+  let rateStars = [];
+  for (let i = 0; i < rate; i++) {
+    let star = <i className="bi bi-star-fill" style={{ color: "#ebcf50" }}></i>;
+    rateStars.push(star);
+  }
+  return rateStars;
+};
+
 const SingleComment = (prop) => (
   <ListGroup.Item>
-    {prop.comment.comment}
-    <Button
-      variant="danger"
-      className="ml-2"
-      onClick={() => deleteComment(prop.comment._id, prop.fetchBook)}
-    >
-      D
-    </Button>
+    <div className="rate">{rateAsStars(prop.comment.rate)}</div>
+    <Row>
+      <Col xs={10}>
+        <div className="comments">Comment: {prop.comment.comment}</div>
+      </Col>
+      <Col xs={2}>
+        <Button
+          variant="danger"
+          className="ml-2"
+          onClick={() => deleteComment(prop.comment._id, prop.fetchBook)}
+        >
+          D
+        </Button>
+      </Col>
+    </Row>
   </ListGroup.Item>
 );
 
