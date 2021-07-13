@@ -45,7 +45,7 @@ const SingleComment = (prop) => (
           className="ml-2"
           onClick={() => deleteComment(prop.comment._id, prop.fetchBook)}
         >
-          D
+          <i class="bi bi-trash"></i>
         </Button>
       </Col>
     </Row>

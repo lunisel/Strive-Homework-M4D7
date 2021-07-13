@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 
 const AddComment = (prop) => {
@@ -27,9 +27,9 @@ const AddComment = (prop) => {
         // the comment has been sent succesfully!!
         alert("Comment was sent!");
         setCommentForm({
+          ...commentForm,
           comment: "",
           rate: 1,
-          elementId: prop.asin,
         });
         prop.fetchBook();
       } else {
@@ -40,6 +40,13 @@ const AddComment = (prop) => {
       console.log("error");
     }
   };
+
+  useEffect(() => {
+    setCommentForm({
+      ...commentForm,
+      elementId: prop.asin,
+    });
+  }, [prop.asin]);
 
   return (
     <div>
@@ -78,7 +85,7 @@ const AddComment = (prop) => {
             <option>5</option>
           </Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="my-3">
           Submit
         </Button>
       </Form>

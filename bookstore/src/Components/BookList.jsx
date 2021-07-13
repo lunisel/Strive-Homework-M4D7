@@ -6,6 +6,7 @@ import { useState } from "react";
 const BookList = (prop) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
+  const [isSelected, setIsSelected] = useState(false);
 
   return (
     <Container fluid>
@@ -43,7 +44,12 @@ const BookList = (prop) => {
                   key={book.asin}
                   style={{ height: "25rem" }}
                   onClick={() => {
-                    setSelectedBook(book);
+                    if (isSelected === false) {
+                      setSelectedBook(book);
+                      setIsSelected(!isSelected);
+                    } else if (isSelected === true) {
+                      setSelectedBook(book);
+                    }
                   }}
                 >
                   <SingleBook b={book} />
@@ -53,7 +59,7 @@ const BookList = (prop) => {
         </Col>
         <Col xs={12} md={4}>
           <h3>Comments:</h3>
-          {selectedBook && <CommentArea b={selectedBook} />}
+          {isSelected && <CommentArea b={selectedBook} />}
         </Col>
       </Row>
       <Row></Row>

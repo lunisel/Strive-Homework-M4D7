@@ -5,13 +5,6 @@ import Loading from "./Loading";
 import Error from "./Error";
 
 const CommentArea = (prop) => {
-  /*   state = {
-    comments: [], // comments will go here
-    isLoading: true,
-    isError: false,
-  };
- */
-
   const [state, setState] = useState({
     comments: [],
     isLoading: true,
