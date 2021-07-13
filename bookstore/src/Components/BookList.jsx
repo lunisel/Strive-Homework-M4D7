@@ -1,4 +1,3 @@
-import { setState } from "react";
 import SingleBook from "./SingleBook";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import CommentArea from "./CommentArea";
