@@ -1,21 +1,27 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import Loading from "./Loading";
 import Error from "./Error";
 
-class CommentArea extends Component {
-  state = {
+const CommentArea = (prop) => {
+  /*   state = {
     comments: [], // comments will go here
     isLoading: true,
     isError: false,
   };
+ */
 
-  fetchBook = async () => {
+  const [state, setState] = useState({
+    comments: [],
+    isLoading: true,
+    isError: false,
+  });
+
+  const fetchBook = async () => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/" +
-          this.props.b.asin,
+        "https://striveschool-api.herokuapp.com/api/comments/" + prop.b.asin,
         {
           headers: {
             Authorization:
@@ -25,46 +31,46 @@ class CommentArea extends Component {
       );
       if (response.ok) {
         let comments = await response.json();
-        this.setState({
+        setState({
           comments: comments,
           isLoading: false,
           isError: false,
-          id: this.props.b.asin,
         });
       } else {
         console.log("error");
-        this.setState({ isLoading: false, isError: true });
+        setState({
+          ...state,
+          isLoading: false,
+          isError: true,
+        });
       }
     } catch (error) {
       console.log(error);
-      this.setState({ isLoading: false, isError: true });
+      setState({
+        ...state,
+        isLoading: false,
+        isError: true,
+      });
     }
   };
 
-  componentDidMount = async () => {
-    this.fetchBook();
-  };
+  useEffect(() => {
+    fetchBook();
+  }, []);
 
-  componentDidUpdate = (prevProp, prevState) => {
-    if (prevProp.b.asin !== this.props.b.asin) {
-      this.fetchBook();
-    }
-  };
+  useEffect(() => {
+    fetchBook();
+  }, [prop.b.asin]);
 
-  render() {
-    return (
-      <div>
-        {this.state.isLoading && <Loading />}
-        {this.state.isError && <Error />}
-        <img src={this.props.b.img} style={{ width: "10rem" }} />
-        <AddComment asin={this.props.b.asin} fetchBook={this.fetchBook} />
-        <CommentList
-          commentsToShow={this.state.comments}
-          fetchBook={this.fetchBook}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {state.isLoading && <Loading />}
+      {state.isError && <Error />}
+      <img src={prop.b.img} style={{ width: "10rem" }} />
+      <AddComment asin={prop.b.asin} fetchBook={fetchBook} />
+      <CommentList commentsToShow={state.comments} fetchBook={fetchBook} />
+    </div>
+  );
+};
 
 export default CommentArea;

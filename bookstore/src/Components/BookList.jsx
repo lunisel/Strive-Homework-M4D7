@@ -4,11 +4,6 @@ import CommentArea from "./CommentArea";
 import { useState } from "react";
 
 const BookList = (prop) => {
-  /* state = {
-    searchQuery: "",
-    selectedBook: null,
-  }; */
-
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
 
