@@ -14,12 +14,6 @@ function App() {
           <Col xs={12}>
             <BookList books={fantasyBooks} />
           </Col>
-          {/* 
-          <Col xs={12} md={4}>
-            <WarningSign text="Watch out again!" />
-            <MyBadge text="NEW!!" color="info" />
-            <CommentArea />
-          </Col> */}
         </Row>
       </header>
     </div>
